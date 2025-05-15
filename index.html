@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ping Pong Match Organizer</title>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512'%3E%3Cpath fill='%230077B6' d='M274.9 34.3c-28.1-28.1-73.7-28.1-101.8 0L34.3 173.1c-28.1 28.1-28.1 73.7 0 101.8L173.1 413.7c28.1 28.1 73.7 28.1 101.8 0L413.7 274.9c28.1-28.1 28.1-73.7 0-101.8L274.9 34.3zM200 224a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM96 200a24 24 0 1 1 0 48 24 24 0 1 1 0-48zM224 376a24 24 0 1 1 0-48 24 24 0 1 1 0 48zM352 200a24 24 0 1 1 0 48 24 24 0 1 1 0-48zM224 120a24 24 0 1 1 0-48 24 24 0 1 1 0 48zm96 328c0 35.3 28.7 64 64 64H576c35.3 0 64-28.7 64-64V256c0-35.3-28.7-64-64-64H461.7c11.6 36 3.1 77-25.4 105.5L320 413.8V448zM480 328a24 24 0 1 1 0 48 24 24 0 1 1 0-48z'/%3E%3C/svg%3E" type="image/svg+xml">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Ping Pong Match Organizer</h1>
+            <p>Trova avversari, organizza partite, migliora il tuo gioco</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="logo">PingPongMatch</div>
+        <ul id="navLinks">
+            <li><a href="#" data-page="home">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 576 512">
+                    <path fill="currentColor" d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40h-16c-1.1 0-2.2 0-3.3-.1-1.4 .1-2.8 .1-4.2 .1H392c-22.1 0-40-17.9-40-40v-88c0-17.7-14.3-32-32-32h-64c-17.7 0-32 14.3-32 32v88c0 22.1-17.9 40-40 40h-55.9c-1.5 0-3-.1-4.5-.2-1.2 .1-2.4 .2-3.6 .2h-16c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8v-69.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>
+                </svg>
+                Home
+            </a></li>
+            <li><a href="#" data-page="login" id="loginNav">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
+                    <path fill="currentColor" d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/>
+                </svg>
+                Accedi
+            </a></li>
+            <li><a href="#" data-page="profile" id="profileNav" class="hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 448 512">
+                    <path fill="currentColor" d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
+                </svg>
+                Profilo
+            </a></li>
+            <li><a href="#" data-page="matches" id="matchesNav" class="hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 640 512">
+                    <path fill="currentColor" d="M274.9 34.3c-28.1-28.1-73.7-28.1-101.8 0L34.3 173.1c-28.1 28.1-28.1 73.7 0 101.8L173.1 413.7c28.1 28.1 73.7 28.1 101.8 0L413.7 274.9c28.1-28.1 28.1-73.7 0-101.8L274.9 34.3zM200 224a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM96 200a24 24 0 1 1 0 48 24 24 0 1 1 0-48zM224 376a24 24 0 1 1 0-48 24 24 0 1 1 0 48zM352 200a24 24 0 1 1 0 48 24 24 0 1 1 0-48zM224 120a24 24 0 1 1 0-48 24 24 0 1 1 0 48zm96 328c0 35.3 28.7 64 64 64H576c35.3 0 64-28.7 64-64V256c0-35.3-28.7-64-64-64H461.7c11.6 36 3.1 77-25.4 105.5L320 413.8V448zM480 328a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                </svg>
+                Partite
+            </a></li>
+            <li><a href="#" data-page="gamification" id="gamificationNav" class="hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 576 512">
+                    <path fill="currentColor" d="M400 0H176c-26.5 0-48.1 21.8-47.1 48.2c.2 5.3 .4 10.6 .7 15.8H24C10.7 64 0 74.7 0 88c0 92.6 33.5 157 78.5 200.7c44.3 43.1 98.3 64.8 138.1 75.8c23.4 6.5 39.4 26 39.4 45.6c0 20.9-17 37.9-37.9 37.9H192c-17.7 0-32 14.3-32 32s14.3 32 32 32H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H357.9C337 448 320 431 320 410.1c0-19.6 15.9-39.2 39.4-45.6c39.9-11 93.9-32.7 138.2-75.8C542.5 245 576 180.6 576 88c0-13.3-10.7-24-24-24H446.4c.3-5.2 .5-10.4 .7-15.8C448.1 21.8 426.5 0 400 0zM48.9 112h84.4c9.1 90.1 29.2 150.3 51.9 190.6c-24.9-11-50.8-26.5-73.2-48.3c-32-31.1-58-76-63-142.3zM464.1 254.3c-22.4 21.8-48.3 37.3-73.2 48.3c22.7-40.3 42.8-100.5 51.9-190.6h84.4c-5.1 66.3-31.1 111.2-63 142.3z"/>
+                </svg>
+                Gamification
+            </a></li>
+            <li><a href="#" id="logoutNav" class="hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
+                    <path fill="currentColor" d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9z"/>
+                </svg>
+                Esci
+            </a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <!-- Home Page -->
+        <section id="homePage">
+            <div class="card fade-in">
+                <h2>Benvenuto nell'app organizzatore di partite di Ping Pong!</h2>
+                <p>Questa app ti permette di organizzare e unirti a partite di ping pong nella tua zona. Trova nuovi avversari e migliora il tuo gioco!</p>
+                <div id="homeActions">
+                    <a href="#" class="btn" data-page="login">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512" style="margin-right: 8px;">
+                            <path fill="currentColor" d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/>
+                        </svg>
+                        Accedi
+                    </a>
+                    <a href="#" class="btn btn-secondary" data-page="register">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 640 512" style="margin-right: 8px;">
+                            <path fill="currentColor" d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312V248H440c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V136c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H552v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/>
+                        </svg>
+                        Registrati
+                    </a>
+                </div>
+                <div id="welcomeMessage" class="hidden">
+                    <div class="profile-header">
+                        <div class="profile-avatar" id="avatarInitial"></div>
+                        <div class="profile-details">
+                            <h3>Bentornato, <span id="welcomeUsername" class="profile-username"></span>!</h3>
+                            <p>Cosa vuoi fare oggi?</p>
+                            <div style="margin-top: 0.5rem;">
+                                <div class="xp-bar-container" style="width: 150px; margin-bottom: 0.3rem;">
+                                    <div class="xp-bar" id="welcomeXpBar" style="width: 0%;"></div>
+                                </div>
+                                <small style="color: var(--primary-color);">
+                                    Livello <span id="userLevel">1</span> · 
+                                    <span id="userXP">0</span> XP
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+                        <a href="#" class="btn" data-page="matches">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512" style="margin-right: 8px;">
+                                <path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+                            </svg>
+                            Visualizza partite disponibili
+                        </a>
+                        <a href="#" class="btn btn-secondary" data-page="create-match">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 448 512" style="margin-right: 8px;">
+                                <path fill="currentColor" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
+                            </svg>
+                            Crea nuova partita
+                        </a>
+                        <a href="#" class="btn btn-outline" data-page="profile">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 448 512" style="margin-right: 8px;">
+                                <path fill="currentColor" d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
+                            </svg>
+                            Visualizza profilo
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card fade-in">
+                <h2>Come funziona</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                    <div style="text-align: center; padding: 1rem;">
+                        <div style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 640 512">
+                                <path fill="currentColor" d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312V248H440c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V136c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H552v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/>
+                            </svg>
+                        </div>
+                        <h3>1. Registrati</h3>
+                        <p>Crea il tuo profilo indicando il tuo livello di gioco e inizia a interagire con altri giocatori.</p>
+                    </div>
+                    <div style="text-align: center; padding: 1rem;">
+                        <div style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 640 512">
+                                <path fill="currentColor" d="M274.9 34.3c-28.1-28.1-73.7-28.1-101.8 0L34.3 173.1c-28.1 28.1-28.1 73.7 0 101.8L173.1 413.7c28.1 28.1 73.7 28.1 101.8 0L413.7 274.9c28.1-28.1 28.1-73.7 0-101.8L274.9 34.3zM200 224a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM96 200a24 24 0 1 1 0 48 24 24 0 1 1 0-48zM224 376a24 24 0 1 1 0-48 24 24 0 1 1 0 48zM352 200a24 24 0 1 1 0 48 24 24 0 1 1 0-48zM224 120a24 24 0 1 1 0-48 24 24 0 1 1 0 48zm96 328c0 35.3 28.7 64 64 64H576c35.3 0 64-28.7 64-64V256c0-35.3-28.7-64-64-64H461.7c11.6 36 3.1 77-25.4 105.5L320 413.8V448zM480 328a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                            </svg>
+                        </div>
+                        <h3>2. Trova partite</h3>
+                        <p>Unisciti a partite organizzate da altri giocatori o crea le tue partite invitando nuovi avversari.</p>
+                    </div>
+                    <div style="text-align: center; padding: 1rem;">
+                        <div style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 640 512">
+                                <path fill="currentColor" d="M353.8 54.1L330.2 6.3c-3.9-8.3-16.1-8.6-20.4 0L286.2 54.1l-52.3 7.5c-9.3 1.4-13.3 12.9-6.4 19.8l38 37-9 52.1c-1.4 9.3 8.2 16.5 16.8 12.2l46.9-24.8 46.6 24.4c8.6 4.3 18.3-2.9 16.8-12.2l-9-52.1 38-37c6.9-6.9 2.9-18.4-6.4-19.8l-52.3-7.5zM256 256c-17.7 0-32 14.3-32 32v192c0 17.7 14.3 32 32 32h128c17.7 0 32-14.3 32-32V288c0-17.7-14.3-32-32-32H256zM0 416c0 35.3 28.7 64 64 64H544c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64C28.7 32 0 60.7 0 96V416zM64 96H544V416H64V96z"/>
+                            </svg>
+                        </div>
+                        <h3>3. Registra i risultati</h3>
+                        <p>Dopo la partita, registra il risultato e guadagna esperienza per migliorare le tue statistiche personali.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Login/Register Page -->
+        <section id="loginPage" class="hidden">
+            <div class="card fade-in">
+                <div class="tab-container">
+                    <div class="tab-btn active" data-tab="loginForm">Accedi</div>
+                    <div class="tab-btn" data-tab="registerForm">Registrati</div>
+                </div>
+                
+                <form id="loginForm">
+                    <div class="form-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+                            <path fill="currentColor" d="M399 384.2C376.9 345.8 335.4 320 288 320H224c-47.4 0-88.9 25.8-111 64.2c35.2 39.2 86.2 63.8 143 63.8s107.8-24.7 143-63.8zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 16a72 72 0 1 0 0-144 72 72 0 1 0 0 144z"/>
+                        </svg>
+                        <h2 style="margin-bottom: 0;">Accedi</h2>
+                    </div>
+                    <div>
+                        <label for="loginUsername">Username</label>
+                        <input type="text" id="loginUsername" required placeholder="Il tuo username">
+                    </div>
+                    <div>
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required placeholder="La tua password">
+                    </div>
+                    <button type="submit" class="btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512" style="margin-right: 8px;">
+                            <path fill="currentColor" d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/>
+                        </svg>
+                        Accedi
+                    </button>
+                </form>
+                
+                <form id="registerForm" class="hidden">
+                    <div class="form-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 640 512">
+                            <path fill="currentColor" d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312V248H440c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V136c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H552v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/>
+                        </svg>
+                        <h2 style="margin-bottom: 0;">Registrati</h2>
+                    </div>
+                    <div>
+                        <label for="registerUsername">Username</label>
+                        <input type="text" id="registerUsername" required placeholder="Scegli un username">
+                    </div>
+                    <div>
+                        <label for="registerEmail">Email</label>
+                        <input type="email" id="registerEmail" required placeholder="La tua email">
+                    </div>
+                    <div>
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" required placeholder="Scegli una password">
+                    </div>
+                    <div>
+                        <label for="registerLevel">Livello di gioco</label>
+                        <select id="registerLevel" required>
+                            <option value="" disabled selected>Seleziona il tuo livello</option>
+                            <option value="Principiante">Principiante</option>
+                            <option value="Intermedio">Intermedio</option>
+                            <option value="Avanzato">Avanzato</option>
+                            <option value="Esperto">Esperto</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 640 512" style="margin-right: 8px;">
+                            <path fill="currentColor" d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312V248H440c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V136c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H552v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/>
+                        </svg>
+                        Registrati
+                    </button>
+                </form>
+            </div>
+        </section>
+        
+        <!-- Profile Page -->
+        <section id="profilePage" class="hidden">
+            <div class="card fade-in">
+                <div class="profile-header">
+                    <div class="profile-avatar" id="profileAvatar"></div>
+                    <div class="profile-details">
+                        <h2 class="profile-username" id="profileUsername"></h2>
+                        <span class="profile-level" id="profileLevel"></span>
+                        
+                        <div style="margin-top: 1rem;">
+                            <p>Livello Gamification: <span class="level-badge" id="gamificationLevel">1</span></p>
+                            <div class="xp-bar-container">
+                                <div class="xp-bar" id="xpBar" style="width: 0%;"></div>
+                            </div>
+                            <small style="display: flex; justify-content: space-between; color: var(--gray-600);">
+                                <span><span id="currentXP">0</span> XP</span>
+                                <span>Prossimo livello: <span id="nextLevelXP">100</span> XP</span>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="profile-info">
+                    <div class="profile-stat">
+                        <p>Partite giocate</p>
+                        <h3 id="profileMatchesPlayed">0</h3>
+                    </div>
+                    <div class="profile-stat">
+                        <p>Vittorie</p>
+                        <h3 id="profileWins">0</h3>
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 2rem;">
+                    <h3>Informazioni personali</h3>
+                    <div class="profile-detail-item">
+                        <div class="profile-detail-label">Email:</div>
+                        <div id="profileEmail"></div>
+                    </div>
+                    <div class="profile-detail-item">
+                        <div class="profile-detail-label">Data registrazione:</div>
+                        <div id="profileRegistrationDate"></div>
+                    </div>
+                    <div class="profile-detail-item">
+                        <div class="profile-detail-label">Percentuale vittorie:</div>
+                        <div id="profileWinRate">0%</div>
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 2rem;">
+                    <h3>Achievement</h3>
+                    <div id="profileAchievements">
+                        <!-- Achievement badges will be loaded here -->
+                    </div>
+                </div>
+                
+                <h3>Cronologia partite</h3>
+                <div id="matchHistory" class="match-grid">
+                    <!-- Match history will be loaded here -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Matches Page -->
+        <section id="matchesPage" class="hidden">
+            <div class="card fade-in">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h2>Partite disponibili</h2>
+                    <a href="#" class="btn" data-page="create-match">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 448 512" style="margin-right: 8px;">
+                            <path fill="currentColor" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
+                        </svg>
+                        Crea nuova partita
+                    </a>
+                </div>
+                
+                <div class="tab-container">
+                    <div class="tab-btn active" data-matches-tab="upcoming">Prossime partite</div>
+                    <div class="tab-btn" data-matches-tab="past">Partite passate</div>
+                </div>
+                
+                <div id="matchesFilter" style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div style="flex: 1; min-width: 200px;">
+                        <label for="filterLevel">Livello</label>
+                        <select id="filterLevel">
+                            <option value="all">Tutti i livelli</option>
+                            <option value="Principiante">Principiante</option>
+                            <option value="Intermedio">Intermedio</option>
+                            <option value="Avanzato">Avanzato</option>
+                            <option value="Esperto">Esperto</option>
+                        </select>
+                    </div>
+                    <div style="flex: 1; min-width: 200px;">
+                        <label for="filterDate">Data</label>
+                        <input type="date" id="filterDate">
+                    </div>
+                    <div style="flex: 1; min-width: 200px;">
+                        <label for="searchMatch">Cerca</label>
+                        <input type="text" id="searchMatch" placeholder="Cerca per titolo o luogo">
+                    </div>
+                </div>
+                
+                <div id="upcomingMatches" class="match-grid">
+                    <!-- Match cards will be added here -->
+                </div>
+                
+                <div id="pastMatches" class="match-grid hidden">
+                    <!-- Past match cards will be added here -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Create Match Page -->
+        <section id="createMatchPage" class="hidden">
+            <div class="card fade-in">
+                <div class="form-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 640 512">
+                        <path fill="currentColor" d="M274.9 34.3c-28.1-28.1-73.7-28.1-101.8 0L34.3 173.1c-28.1 28.1-28.1 73.7 0 101.8L173.1 413.7c28.1 28.1 73.7 28.1 101.8 0L413.7 274.9c28.1-28.1 28.1-73.7 0-101.8L274.9 34.3zM200 224a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM96 200a24 24 0 1 1 0 48 24 24 0 1 1 0-48zM224 376a24 24 0 1 1 0-48 24 24 0 1 1 0 48zM352 200a24 24 0 1 1 0 48 24 24 0 1 1 0-48zM224 120a24 24 0 1 1 0-48 24 24 0 1 1 0 48zm96 328c0 35.3 28.7 64 64 64H576c35.3 0 64-28.7 64-64V256c0-35.3-28.7-64-64-64H461.7c11.6 36 3.1 77-25.4 105.5L320 413.8V448zM480 328a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                    </svg>
+                    <h2 style="margin-bottom: 0;">Crea nuova partita</h2>
+                </div>
+                
+                <form id="createMatchForm">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <label for="matchTitle">Titolo</label>
+                            <input type="text" id="matchTitle" required placeholder="es. Partita amichevole al parco">
+                        </div>
+                        
+                        <div>
+                            <label for="matchLevel">Livello consigliato</label>
+                            <select id="matchLevel" required>
+                                <option value="" disabled selected>Seleziona il livello</option>
+                                <option value="Tutti">Tutti i livelli</option>
+                                <option value="Principiante">Principiante</option>
+                                <option value="Intermedio">Intermedio</option>
+                                <option value="Avanzato">Avanzato</option>
+                                <option value="Esperto">Esperto</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <label for="matchDate">Data</label>
+                            <input type="date" id="matchDate" required>
+                        </div>
+                        
+                        <div>
+                            <label for="matchTime">Ora</label>
+                            <input type="time" id="matchTime" required>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="matchLocation">Luogo</label>
+                        <input type="text" id="matchLocation" required placeholder="es. Centro sportivo Rossi, Via Roma 123">
+                    </div>
+                    
+                    <div>
+                        <label for="matchNotes">Note</label>
+                        <textarea id="matchNotes" rows="3" placeholder="Informazioni aggiuntive sulla partita, regole particolari, cosa portare..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 448 512" style="margin-right: 8px;">
+                            <path fill="currentColor" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
+                        </svg>
+                        Crea partita
+                    </button>
+                </form>
+            </div>
+        </section>
+        
+        <!-- Match Details Page -->
+        <section id="matchDetailsPage" class="hidden">
+            <div class="card fade-in">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <h2 id="detailTitle"></h2>
+                        <div style="display: flex; align-items: center; margin-top: 0.5rem;">
+                            <span class="profile-level" id="detailLevel"></span>
+                            <span id="matchStatusBadge" style="display: inline-block; margin-left: 0.5rem; padding: 0.3rem 0.8rem; border-radius: 30px; font-size: 0.9rem; font-weight: 500;"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <div id="joinMatchBtn" class="hidden">
+                            <button class="btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 640 512" style="margin-right: 8px;">
+                                    <path fill="currentColor" d="M352 128c0 70.7-57.3 128-128 128s-128-57.3-128-128S153.3 0 224 0s128 57.3 128 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312V248H440c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V136c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H552v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/>
+                                </svg>
+                                Unisciti a questa partita
+                            </button>
+                        </div>
+                        <div id="leaveMatchBtn" class="hidden">
+                            <button class="btn btn-danger">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 640 512" style="margin-right: 8px;">
+                                    <path fill="currentColor" d="M352 128c0 70.7-57.3 128-128 128s-128-57.3-128-128S153.3 0 224 0s128 57.3 128 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM432 160c0-8.8 7.2-16 16-16l112 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-112 0c-8.8 0-16-7.2-16-16zm16 112c-8.8 0-16-7.2-16-16s7.2-16 16-16H592c8.8 0 16 7.2 16 16s-7.2 16-16 16H448z"/>
+                                </svg>
+                                Abbandona partita
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="match-info" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 448 512" class="match-info-icon">
+                                <path fill="currentColor" d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24z"/>
+                            </svg>
+                            <strong>Data:</strong> <span id="detailDate"></span>
+                        </p>
+                        <p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512" class="match-info-icon">
+                                <path fill="currentColor" d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/>
+                            </svg>
+                            <strong>Ora:</strong> <span id="detailTime"></span>
+                        </p>
+                        <p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 384 512" class="match-info-icon">
+                                <path fill="currentColor" d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+                            </svg>
+                            <strong>Luogo:</strong> <span id="detailLocation"></span>
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 448 512" class="match-info-icon">
+                                <path fill="currentColor" d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
+                            </svg>
+                            <strong>Organizzatore:</strong> <span id="detailOrganizer"></span>
+                        </p>
+                        <p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 640 512" class="match-info-icon">
+                                <path fill="currentColor" d="M274.9 34.3c-28.1-28.1-73.7-28.1-101.8 0L34.3 173.1c-28.1 28.1-28.1 73.7 0 101.8L173.1 413.7c28.1 28.1 73.7 28.1 101.8 0L413.7 274.9c28.1-28.1 28.1-73.7 0-101.8L274.9 34.3zM200 224a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM96 200a24 24 0 1 1 0 48 24 24 0 1 1 0-48zM224 376a24 24 0 1 1 0-48 24 24 0 1 1 0 48zM352 200a24 24 0 1 1 0 48 24 24 0 1 1 0-48zM224 120a24 24 0 1 1 0-48 24 24 0 1 1 0 48zm96 328c0 35.3 28.7 64 64 64H576c35.3 0 64-28.7 64-64V256c0-35.3-28.7-64-64-64H461.7c11.6 36 3.1 77-25.4 105.5L320 413.8V448zM480 328a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                            </svg>
+                            <strong>Stato:</strong> <span id="detailStatus"></span>
+                        </p>
+                        <p id="detailScoreContainer" class="hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 640 512" class="match-info-icon">
+                                <path fill="currentColor" d="M353.8 54.1L330.2 6.3c-3.9-8.3-16.1-8.6-20.4 0L286.2 54.1l-52.3 7.5c-9.3 1.4-13.3 12.9-6.4 19.8l38 37-9 52.1c-1.4 9.3 8.2 16.5 16.8 12.2l46.9-24.8 46.6 24.4c8.6 4.3 18.3-2.9 16.8-12.2l-9-52.1 38-37c6.9-6.9 2.9-18.4-6.4-19.8l-52.3-7.5zM256 256c-17.7 0-32 14.3-32 32v192c0 17.7 14.3 32 32 32h128c17.7 0 32-14.3 32-32V288c0-17.7-14.3-32-32-32H256zM0 416c0 35.3 28.7 64 64 64H544c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64C28.7 32 0 60.7 0 96V416zM64 96H544V416H64V96z"/>
+                            </svg>
+                            <strong>Punteggio:</strong> <span id="detailScore"></span>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="match-players">
+                    <div class="match-players-title">Giocatori</div>
+                    <div id="detailPlayers" style="display: flex; flex-wrap: wrap; margin-top: 0.5rem;">
+                        <!-- Players will be added here -->
+                    </div>
+                </div>
+                
+                <div style="background: var(--gray-100); border-radius: var(--border-radius); padding: 1.5rem; margin-bottom: 1.5rem;">
+                    <h3 style="font-size: 1.3rem; margin-bottom: 0.8rem; display: flex; align-items: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512" style="margin-right: 8px;">
+                            <path fill="currentColor" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                        </svg>
+                        Note
+                    </h3>
+                    <p id="detailNotes" style="white-space: pre-line; color: var(--gray-700);"></p>
+                </div>
+                
+                <div id="completeMatchSection" class="hidden">
+                    <div class="form-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 576 512">
+                            <path fill="currentColor" d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/>
+                        </svg>
+                        <h3 style="margin-bottom: 0;">Registra risultato</h3>
+                    </div>
+                    
+                    <form id="completeMatchForm">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                            <div>
+                                <label for="winner">Vincitore</label>
+                                <select id="winner" required>
+                                    <!-- Options will be added here -->
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="matchScore">Punteggio</label>
+                                <input type="text" id="matchScore" placeholder="es. 11-8, 9-11, 11-7" required>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-success" style="margin-top: 1rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 448 512" style="margin-right: 8px;">
+                                <path fill="currentColor" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+                            </svg>
+                            Registra risultato
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Gamification Page -->
+        <section id="gamificationPage" class="hidden">
+            <div class="card fade-in">
+                <h2>Gamification</h2>
+                
+                <div class="tab-container">
+                    <div class="tab-btn active" data-gamification-tab="achievements-content">Achievement</div>
+                    <div class="tab-btn" data-gamification-tab="leaderboard-content">Classifica</div>
+                    <div class="tab-btn" data-gamification-tab="challenges-content">Sfide</div>
+                </div>
+                
+                <div id="achievements-content" class="gamification-content">
+                    <h3>I tuoi Achievement</h3>
+                    <p>Sblocca achievement partecipando e vincendo partite, organizzando eventi e migliorando come giocatore.</p>
+                    <div id="achievements-container" class="match-grid">
+                        <!-- Achievements will be loaded here -->
+                    </div>
+                </div>
+                
+                <div id="leaderboard-content" class="gamification-content hidden">
+                    <h3>Classifica Globale</h3>
+                    <p>Competi con altri giocatori per raggiungere la cima della classifica.</p>
+                    <div id="leaderboard-container">
+                        <!-- Leaderboard will be loaded here -->
+                    </div>
+                </div>
+                
+                <div id="challenges-content" class="gamification-content hidden">
+                    <h3>Sfide Settimanali</h3>
+                    <p>Completa le sfide per guadagnare XP extra e sbloccare nuovi achievement.</p>
+                    <div id="challenges-container">
+                        <!-- Challenges will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Alert Container -->
+        <div id="alertContainer"></div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: left; margin-bottom: 2rem;">
+                <div>
+                    <h3 style="color: white; font-size: 1.3rem; margin-bottom: 1rem;">Ping Pong Match</h3>
+                    <p style="color: var(--gray-400); font-size: 0.9rem;">La piattaforma più semplice per trovare avversari di ping pong nella tua zona e organizzare partite divertenti.</p>
+                </div>
+                <div>
+                    <h4 style="color: white; font-size: 1rem; margin-bottom: 1rem;">Link utili</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--gray-400); text-decoration: none; transition: var(--transition-fast);" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--gray-400)'">Home</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--gray-400); text-decoration: none; transition: var(--transition-fast);" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--gray-400)'">Partite</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--gray-400); text-decoration: none; transition: var(--transition-fast);" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--gray-400)'">Profilo</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: white; font-size: 1rem; margin-bottom: 1rem;">Contatti</h4>
+                    <p style="color: var(--gray-400); font-size: 0.9rem; margin-bottom: 0.5rem;">Email: info@pingpongmatch.it</p>
+                    <p style="color: var(--gray-400); font-size: 0.9rem; margin-bottom: 0.5rem;">Tel: +39 123 456 7890</p>
+                </div>
+                <div>
+                    <h4 style="color: white; font-size: 1rem; margin-bottom: 1rem;">Social</h4>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="#" style="color: var(--gray-400); text-decoration: none; transition: var(--transition-fast);" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--gray-400)'">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 448 512" fill="currentColor">
+                                <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
+                            </svg>
+                        </a>
+                        <a href="#" style="color: var(--gray-400); text-decoration: none; transition: var(--transition-fast);" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--gray-400)'">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512" fill="currentColor">
+                                <path d="M459.4 151.7c.3 4.5 .3 9.1 .3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53 51.7 63.7 129.3 105.3 216.4 109.8-1.6-7.8-2.6-15.9-2.6-24 0-57.8 46.8-104.9 104.9-104.9 30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3z"/>
+                            </svg>
+                        </a>
+                        <a href="#" style="color: var(--gray-400); text-decoration: none; transition: var(--transition-fast);" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--gray-400)'">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 448 512" fill="currentColor">
+                                <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="border-top: 1px solid var(--gray-700); padding-top: 1.5rem;">
+                <p style="color: var(--gray-400); font-size: 0.9rem;">&copy; 2025 Ping Pong Match Organizer. Tutti i diritti riservati.</p>
+                <button id="darkModeToggle" class="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 384 512" fill="currentColor">
+                        <path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/gamification.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/matches.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+/* Dark mode styles */
+.dark-mode {
+    --primary-color: #00b4d8;
+    --primary-light: #90e0ef;
+    --primary-dark: #0077b6;
+    --secondary-color: #ffd166;
+    --secondary-light: #ffe8b3;
+    --dark-color: #0d1b2a;
+    --light-color: #e0e1dd;
+    --success-color: #2ec4b6;
+    --danger-color: #e63946;
+    --warning-color: #ffb703;
+    --info-color: #4cc9f0;
+    --gray-100: #1a1a2e;
+    --gray-200: #16213e;
+    --gray-300: #1f4068;
+    --gray-400: #2d4a84;
+    --gray-500: #52b788;
+    --gray-600: #98c1d9;
+    --gray-700: #e0fbfc;
+    --gray-800: #f0f3f5;
+    --gray-900: #ffffff;
+    
+    background-color: var(--gray-100);
+    color: var(--gray-700);
+}
+
+.dark-mode .card {
+    background-color: var(--gray-200);
+    border-top-color: var(--primary-color);
+}
+
+.dark-mode h1, .dark-mode h2, .dark-mode h3 {
+    color: var(--gray-900);
+}
+
+.dark-mode h2::after {
+    background: var(--primary-color);
+}
+
+.dark-mode nav {
+    background-color: var(--gray-200);
+}
+
+.dark-mode nav a {
+    color: var(--gray-700);
+}
+
+.dark-mode nav a:hover {
+    color: var(--primary-light);
+}
+
+.dark-mode .tab-container {
+    background: var(--gray-300);
+}
+
+.dark-mode .tab-btn.active {
+    background: var(--primary-color);
+    color: var(--gray-900);
+}
+
+.dark-mode input, .dark-mode select, .dark-mode textarea {
+    background-color: var(--gray-300);
+    border-color: var(--gray-400);
+    color: var(--gray-800);
+}
+
+.dark-mode input:focus, .dark-mode select:focus, .dark-mode textarea:focus {
+    border-color: var(--primary-color);
+}
+
+.dark-mode .match-card {
+    background-color: var(--gray-200);
+}
+
+.dark-mode .match-card-header {
+    background-color: var(--gray-300);
+    border-bottom-color: var(--gray-400);
+}
+
+.dark-mode .match-card-footer {
+    background-color: var(--gray-300);
+    border-top-color: var(--gray-400);
+}
+
+.dark-mode .match-players {
+    background-color: var(--gray-300);
+}
+
+.dark-mode .player-tag {
+    background-color: var(--gray-300);
+    border-color: var(--primary-dark);
+    color: var(--gray-700);
+}
+
+.dark-mode .btn-outline {
+    border-color: var(--primary-light);
+    color: var(--primary-light);
+}
+
+.dark-mode .btn-outline:hover {
+    background-color: var(--primary-color);
+}
+
+.dark-mode footer {
+    background-color: var(--gray-200);
+}
+
+.dark-mode .dark-mode-toggle {
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+.dark-mode p {
+    color: var(--gray-600);
+}
+
+.dark-mode label {
+    color: var(--gray-700);
+}
+
+.dark-mode .loading::after {
+    background: rgba(26, 26, 46, 0.8);
+}
+
+.dark-mode .loading::before {
+    border-color: var(--gray-400);
+    border-top-color: var(--primary-color);
+}
+
+.dark-mode .game-notification {
+    background-color: var(--gray-200);
+    color: var(--gray-700);
+}
+
+.dark-mode .achievement-badge {
+    background-color: var(--gray-200);
+}
+
+.dark-mode .achievement-badge p {
+    color: var(--gray-500);
+}
+
+.dark-mode .achievement-progress {
+    background-color: var(--gray-400);
+}
+
+.dark-mode .leaderboard-item {
+    background-color: var(--gray-200);
+}
+
+.dark-mode .leaderboard-username {
+    color: var(--gray-700);
+}
+
+.dark-mode .challenge-card {
+    background-color: var(--gray-200);
+}
+
+.dark-mode .challenge-rewards {
+    background-color: var(--gray-300);
+}
+
+.dark-mode .challenge-progress-bar {
+    background-color: var(--gray-300);
+}
+
+.dark-mode .challenge-progress-text {
+    color: var(--gray-500);
+}
+
+.dark-mode .xp-bar-container {
+    background-color: var(--gray-300);
+}
