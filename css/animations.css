@@ -1,0 +1,344 @@
+/* Loading Screen and Animations */
+
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--bg-light);
+  color: var(--text-primary);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-mode .loading-screen {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(0, 119, 182, 0.2);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* XP Gain Animation */
+.xp-gain {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+  animation: xpSlideIn 0.5s ease-out forwards, xpSlideOut 0.5s ease-in forwards 3s;
+  display: flex;
+  align-items: center;
+}
+
+.xp-gain-icon {
+  margin-right: 10px;
+  animation: pulse 1s infinite;
+}
+
+@keyframes xpSlideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes xpSlideOut {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Level Up Animation */
+.level-up {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 20px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  z-index: 1100;
+  text-align: center;
+  animation: levelUpPopIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+             levelUpPopOut 0.5s ease-in forwards 5s;
+}
+
+.level-up-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.level-up-level {
+  font-size: 64px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes levelUpPopIn {
+  from { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+  to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+@keyframes levelUpPopOut {
+  from { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  to { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+}
+
+/* Achievement Unlocked Animation */
+.achievement-unlocked {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--dark-color);
+  color: white;
+  padding: 15px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  min-width: 300px;
+  animation: achievementSlideIn 0.5s ease-out forwards,
+             achievementSlideOut 0.5s ease-in forwards 4s;
+}
+
+.achievement-unlocked-icon {
+  width: 40px;
+  height: 40px;
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
+
+.achievement-unlocked-content {
+  flex: 1;
+}
+
+.achievement-unlocked-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.achievement-unlocked-description {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.achievement-unlocked-points {
+  background-color: var(--secondary-color);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+@keyframes achievementSlideIn {
+  from { transform: translateX(-50%) translateY(100%); opacity: 0; }
+  to { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+@keyframes achievementSlideOut {
+  from { transform: translateX(-50%) translateY(0); opacity: 1; }
+  to { transform: translateX(-50%) translateY(100%); opacity: 0; }
+}
+
+/* Tournament Bracket Visualization */
+.tournament-bracket {
+  display: flex;
+  overflow-x: auto;
+  padding: 20px 0;
+}
+
+.bracket-round {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  min-width: 200px;
+  margin-right: 40px;
+}
+
+.bracket-match {
+  margin: 10px 0;
+  background-color: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  position: relative;
+}
+
+.dark-mode .bracket-match {
+  background-color: var(--bg-card-dark);
+}
+
+.bracket-match::after {
+  content: '';
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  width: 40px;
+  height: 2px;
+  background-color: var(--border-color);
+}
+
+.dark-mode .bracket-match::after {
+  background-color: var(--border-color-dark);
+}
+
+.bracket-match:last-child::after {
+  display: none;
+}
+
+.bracket-player {
+  padding: 10px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+}
+
+.dark-mode .bracket-player {
+  border-color: var(--border-color-dark);
+}
+
+.bracket-player:last-child {
+  border-bottom: none;
+}
+
+.bracket-player.winner {
+  background-color: rgba(16, 185, 129, 0.1);
+  font-weight: bold;
+}
+
+.dark-mode .bracket-player.winner {
+  background-color: rgba(16, 185, 129, 0.2);
+}
+
+.bracket-player.loser {
+  opacity: 0.7;
+}
+
+.bracket-player-name {
+  flex: 1;
+}
+
+.bracket-player-score {
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+/* Map Popup Styles */
+.map-popup {
+  padding: 12px;
+}
+
+.map-popup-title {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: var(--primary-color);
+}
+
+.map-popup-info {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.map-popup-info span {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.map-popup-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.map-popup-button {
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.map-popup-button.primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.map-popup-button.secondary {
+  background-color: var(--gray-200);
+  color: var(--gray-800);
+}
+
+.dark-mode .map-popup-button.secondary {
+  background-color: var(--gray-700);
+  color: var(--gray-200);
+}
+
+/* Custom Marker Styles */
+.custom-marker {
+  width: 30px;
+  height: 30px;
+  border-radius: 50% 50% 50% 0;
+  background-color: var(--primary-color);
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 50%;
+  top: 50%;
+  margin: -15px 0 0 -15px;
+  animation: bounce 0.5s ease-out;
+}
+
+.custom-marker.tournament {
+  background-color: var(--secondary-color);
+}
+
+.custom-marker.table {
+  background-color: var(--success-color);
+}
+
+.custom-marker:after {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  left: 8px;
+  top: 8px;
+}
+
+@keyframes bounce {
+  0% { transform: rotate(-45deg) translateY(-20px); opacity: 0; }
+  60% { transform: rotate(-45deg) translateY(5px); opacity: 1; }
+  80% { transform: rotate(-45deg) translateY(-2px); }
+  100% { transform: rotate(-45deg) translateY(0); }
+}
